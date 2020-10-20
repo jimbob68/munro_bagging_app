@@ -29,7 +29,27 @@ const Main = () => {
 		return dropdownOptions;
 	};
 
-	return <select onChange={(event) => setSelectedRegion(event.target.value)}>{populateRegionsDropbox()}</select>;
-};
+	const getMunrosByRegion = () => {
+        const munrosByRegion = munroData.filter((munro) => munro.region === selectedRegion);
+        const munroNamesByRegion = munrosByRegion.map(munro => {
+            return( 
+            <div>
+                <h1>{munro.name}</h1>
+                <p>Height: {munro.height} m</p>
+                <p>Meaning: {munro.meaning}</p>
+
+                </div>)
+        })
+		return munroNamesByRegion;
+	};
+
+    return (
+        <>
+		<select onChange={(event) => setSelectedRegion(event.target.value)}>{populateRegionsDropbox()}</select>
+
+     	{getMunrosByRegion()}
+         </>
+	)
+}
 
 export default Main;
