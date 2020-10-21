@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import tt from '@tomtom-international/web-sdk-maps';
 import ApiKey from '../ApiKey.js';
-import  '../../node_modules/@tomtom-international/web-sdk-maps/dist/maps.css';
+import './MapComponent.css'
+// import  '../../node_modules/@tomtom-international/web-sdk-maps/dist/maps.css';
 
 const MapComponent = () => {
 
@@ -9,6 +10,8 @@ const MapComponent = () => {
         const map = tt.map({
         key: ApiKey,
         container: 'map',
+        center: [-4.0000, 56.0000],
+        zoom: 5,
         style: 'tomtom://vector/1/basic-main'
         // dragPan: !isMobileOrTablet()
     });
@@ -21,9 +24,7 @@ const MapComponent = () => {
     return (
         <>
             <div class="container">
-            <h1>Map</h1>
-            {/* {map} */}
-            <div id="map" style={{width: "100%", height: "100%"}}></div>
+            <div id="map"></div>
             </div>
     
     
