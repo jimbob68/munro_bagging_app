@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import MapComponent from './components/MapComponent.js';
 
 const Main = () => {
 	const [ munroData, setMunroData ] = useState([]);
@@ -25,7 +26,8 @@ const Main = () => {
 	}, []);
 
 	const populateRegionsDropbox = () => {
-		const dropdownOptions = regionNames.map((regionName) => <option value={regionName}>{regionName}</option>);
+        const dropdownOptions = regionNames.map((regionName) => <option value={regionName}>{regionName}</option>);
+        dropdownOptions.unshift(<option value="" disable selected>Select a Region</option>)
 		return dropdownOptions;
 	};
 
@@ -48,6 +50,7 @@ const Main = () => {
 		<select onChange={(event) => setSelectedRegion(event.target.value)}>{populateRegionsDropbox()}</select>
 
      	{getMunrosByRegion()}
+         <MapComponent/>
          </>
 	)
 }
