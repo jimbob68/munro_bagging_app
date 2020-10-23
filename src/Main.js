@@ -49,8 +49,9 @@ const Main = () => {
         <>
 		<select onChange={(event) => setSelectedRegion(event.target.value)}>{populateRegionsDropbox()}</select>
 
-     	{getMunrosByRegion()}
-         <MapComponent/>
+     	
+         { munroData.length != 0 ? <MapComponent munroData={munroData} selectedRegion={selectedRegion}/> : <p></p>}
+		{getMunrosByRegion()}
          </>
 	)
 }
