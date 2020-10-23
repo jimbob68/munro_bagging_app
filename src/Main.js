@@ -35,31 +35,34 @@ const Main = () => {
         const munrosByRegion = munroData.filter((munro) => munro.region === selectedRegion);
         const munroNamesByRegion = munrosByRegion.map(munro => {
             return( 
-            <tr>
-                <td>{munro.name}</td>
-                <td> {munro.height} m</td>
-                <td> {munro.meaning}</td>
-
-                </tr>)
+				<tr>
+					<td>{munro.name}</td>
+					<td>{munro.height} m</td>
+					<td>{munro.meaning}</td>
+				</tr>
+			)
 		})
 		
-	return <table>
-		<tr>
-		<th>Name:</th>
-		<th>Height:</th>
-		<th>Meaning:</th>
-		</tr>{munroNamesByRegion}</table>
-		// return munroNamesByRegion;
+		return (
+			<table>
+				<tr>
+					<th>Name:</th>
+					<th>Height:</th>
+					<th>Meaning:</th>
+				</tr>
+				{munroNamesByRegion}
+			</table>
+		)
 	};
 
     return (
         <>
-		<select onChange={(event) => setSelectedRegion(event.target.value)}>{populateRegionsDropbox()}</select>
+			<select onChange={(event) => setSelectedRegion(event.target.value)}>{populateRegionsDropbox()}</select>
 
-     	
-         { munroData.length != 0 ? <MapComponent munroData={munroData} selectedRegion={selectedRegion}/> : <p></p>}
-		{getMunrosByRegion()}
-         </>
+         	{ munroData.length != 0 ? <MapComponent munroData={munroData} selectedRegion={selectedRegion}/> : <p></p>}
+			
+			{getMunrosByRegion()}
+        </>
 	)
 }
 

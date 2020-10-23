@@ -4,49 +4,48 @@ import ApiKey from '../ApiKey.js';
 import './MapComponent.css'
 import  '../../node_modules/@tomtom-international/web-sdk-maps/dist/maps.css';
 
-const MapComponent = ({munroData, selectedRegion}) => {
+const MapComponent = ({ munroData, selectedRegion }) => {
 
-    const [ zoomLevel, setZoomLevel ] = useState(5)
+    // const [ zoomLevel, setZoomLevel ] = useState(5)
 
     useEffect(() => {
         const map = tt.map({
-        key: ApiKey,
-        container: 'map',
-        center: [-4.0000, 56.0000],
-        zoom: 5,
-        style: 'tomtom://vector/1/basic-main',
-        dragPan: true
-    });
-    map.addControl(new tt.FullscreenControl());
-    map.addControl(new tt.NavigationControl());
-    // addMarkers(map, 0.5);
-    // console.log("zoom", map.getZoom())
-    // map.on("zoomend", () => zoomFunction(map))
-    displayMarkersOnMap(map)
+            key: ApiKey,
+            container: 'map',
+            center: [-4.0000, 56.0000],
+            zoom: 5,
+            style: 'tomtom://vector/1/basic-main',
+            dragPan: true
+        });
+        map.addControl(new tt.FullscreenControl());
+        map.addControl(new tt.NavigationControl());
+        // addMarkers(map, 0.5);
+        // console.log("zoom", map.getZoom())
+        // map.on("zoomend", () => zoomFunction(map))
+        displayMarkersOnMap(map)
 
     }, [selectedRegion]) 
 
     const displayMarkersOnMap = (map) => {
         let markersForMap = munroData
         if(selectedRegion){
-        const filteredMarkers = munroData.filter(munro => munro.region === selectedRegion)
-        markersForMap = filteredMarkers
-        if(selectedRegion === "The Islands"){
-            map.flyTo({center: [-6.15, 56.89], zoom: 7.5})
-        }
-        else {
-            map.flyTo({center: [markersForMap[0].latlng_lng, markersForMap[0].latlng_lat], zoom: 8})}
+            const filteredMarkers = munroData.filter(munro => munro.region === selectedRegion)
+            markersForMap = filteredMarkers
+            if(selectedRegion === "The Islands"){
+                map.flyTo({center: [-6.15, 56.89], zoom: 7.5})
+            } else {
+                map.flyTo({center: [markersForMap[0].latlng_lng, markersForMap[0].latlng_lat], zoom: 8})
+            }
         }
         markersForMap.forEach(munro => {
-        const popup = new tt.Popup({offset: 30})
-        .setHTML(`<h2>${munro.name} </h2>  <p> Height: ${munro.height}m </p>`)
-        const marker = new tt.Marker({
-            scale: 0.5
+            const popup = new tt.Popup({offset: 30})
+                .setHTML(`<h2>${munro.name} </h2>  <p> Height: ${munro.height}m </p>`)
+
+            const marker = new tt.Marker({scale: 0.5})
+                .setLngLat([munro.latlng_lng, munro.latlng_lat])
+                .setPopup(popup)
+                .addTo(map)
         })
-        .setLngLat([munro.latlng_lng, munro.latlng_lat])
-        .setPopup(popup)
-        .addTo(map)
-    })
     }
 
 
@@ -81,8 +80,6 @@ const MapComponent = ({munroData, selectedRegion}) => {
             <div class="container">
                 <div id="map"></div>
             </div>
-    
-    
         </>
     )
 };
