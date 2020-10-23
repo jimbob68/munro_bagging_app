@@ -35,14 +35,21 @@ const Main = () => {
         const munrosByRegion = munroData.filter((munro) => munro.region === selectedRegion);
         const munroNamesByRegion = munrosByRegion.map(munro => {
             return( 
-            <div>
-                <h1>{munro.name}</h1>
-                <p>Height: {munro.height} m</p>
-                <p>Meaning: {munro.meaning}</p>
+            <tr>
+                <td>{munro.name}</td>
+                <td> {munro.height} m</td>
+                <td> {munro.meaning}</td>
 
-                </div>)
-        })
-		return munroNamesByRegion;
+                </tr>)
+		})
+		
+	return <table>
+		<tr>
+		<th>Name:</th>
+		<th>Height:</th>
+		<th>Meaning:</th>
+		</tr>{munroNamesByRegion}</table>
+		// return munroNamesByRegion;
 	};
 
     return (
