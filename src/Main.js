@@ -5,6 +5,7 @@ const Main = () => {
 	const [ munroData, setMunroData ] = useState([]);
 	const [ regionNames, setRegionNames ] = useState([]);
 	const [ selectedRegion, setSelectedRegion ] = useState('');
+	const [ climbedMunros, setClimbedMunros ] = useState([]);
 
 	useEffect(() => {
 		fetch('https://munroapi.herokuapp.com/munros')
@@ -39,9 +40,17 @@ const Main = () => {
 					<td>{munro.name}</td>
 					<td>{munro.height} m</td>
 					<td>{munro.meaning}</td>
+					{climbedMunros.includes(munro.name) ? <td>Conquered 
+						<button onClick={() => handleUndo(munro)}>Undo</button>
+						</td> :
+						<button onClick={() => handleClimbed(munro)}>Climbed</button>}
+						
+					
+					
 				</tr>
 			)
 		})
+		
 		
 		return (
 			<table>
@@ -54,6 +63,17 @@ const Main = () => {
 			</table>
 		)
 	};
+	const handleClimbed = (munro) => {
+		let updatedClimbedMunros = climbedMunros.concat()
+		updatedClimbedMunros.push(munro.name)
+		setClimbedMunros(updatedClimbedMunros)
+	}
+	const handleUndo = (munro) => {
+		let updatedClimbedMunros = climbedMunros.concat()
+		const index = updatedClimbedMunros.indexOf(munro.name)
+		updatedClimbedMunros.splice(index, 1)
+		setClimbedMunros(updatedClimbedMunros)
+	}
 
     return (
         <>
@@ -63,7 +83,8 @@ const Main = () => {
 			
 			{getMunrosByRegion()}
         </>
-	)
-}
 
-export default Main;
+         	
+	)}	
+	
+	export default Main;

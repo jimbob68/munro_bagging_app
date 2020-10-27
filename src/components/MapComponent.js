@@ -7,6 +7,7 @@ import  '../../node_modules/@tomtom-international/web-sdk-maps/dist/maps.css';
 const MapComponent = ({ munroData, selectedRegion }) => {
 
     // const [ zoomLevel, setZoomLevel ] = useState(5)
+    const [clicked, setClicked] = useState(null)
 
     useEffect(() => {
         const map = tt.map({
@@ -38,6 +39,9 @@ const MapComponent = ({ munroData, selectedRegion }) => {
             }
         }
         markersForMap.forEach(munro => {
+            // const handleClimbed = () => {
+            //     console.log("Climbed")
+            // }
             const popup = new tt.Popup({offset: 30})
                 .setHTML(`<h2>${munro.name} </h2>  <p> Height: ${munro.height}m </p>`)
 
@@ -46,6 +50,11 @@ const MapComponent = ({ munroData, selectedRegion }) => {
                 .setPopup(popup)
                 .addTo(map)
         })
+
+    }
+
+    const handleClimbed = () => {
+        console.log("Climbed")
     }
 
 
@@ -73,11 +82,16 @@ const MapComponent = ({ munroData, selectedRegion }) => {
     //     setZoomLevel(map.getZoom())
     //     addMarkers(map, (map.getZoom() / 10))
     // }
+
+    const buttonTest = () => {
+        console.log("TEST")
+    }
     
     
     return (
         <>
-            <div class="container">
+            <div className="container">
+                <button onClick={ () => buttonTest()}>Click Here</button>
                 <div id="map"></div>
             </div>
         </>
