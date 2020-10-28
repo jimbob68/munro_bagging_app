@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import MapComponent from './components/MapComponent.js';
+import  firebase from 'firebase/app';
+import db from './firebaseConfig';
+import 'firebase/auth';
+
 
 const Main = () => {
 	const [ munroData, setMunroData ] = useState([]);
@@ -65,6 +69,10 @@ const Main = () => {
 		let updatedClimbedMunros = climbedMunros.concat()
 		updatedClimbedMunros.push(munro.name)
 		setClimbedMunros(updatedClimbedMunros)
+		console.log(firebase.auth().currentUser)
+		const userRef = db.collection("users").doc(firebase.auth().currentUser.uid)
+		return userRef.update({munros_bagged: updatedClimbedMunros})
+		// .catch(error => console.log(error))
 	}
 	const handleUndo = (munro) => {
 		let updatedClimbedMunros = climbedMunros.concat()
