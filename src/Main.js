@@ -40,13 +40,11 @@ const Main = () => {
 					<td>{munro.name}</td>
 					<td>{munro.height} m</td>
 					<td>{munro.meaning}</td>
-					{climbedMunros.includes(munro.name) ? <td>Conquered 
-						<button onClick={() => handleUndo(munro)}>Undo</button>
+					{climbedMunros.includes(munro.name) ? 
+						<td>Conquered 
+							<button onClick={() => handleUndo(munro)}>Undo</button>
 						</td> :
 						<button onClick={() => handleClimbed(munro)}>Climbed</button>}
-						
-					
-					
 				</tr>
 			)
 		})
