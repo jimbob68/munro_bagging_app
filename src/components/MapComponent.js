@@ -95,15 +95,13 @@ const MapComponent = ({ munroData, selectedRegion, climbedMunros }) => {
     //     addMarkers(map, (map.getZoom() / 10))
     // }
 
-    const buttonTest = () => {
-        console.log("TEST")
-    }
+    
     
     
     return (
         <>
             <div className="container">
-                <button onClick={ () => buttonTest()}>Click Here</button>
+                
                 <div id="map"></div>
             </div>
         </>
