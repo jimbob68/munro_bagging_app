@@ -3,6 +3,7 @@ import MapComponent from './components/MapComponent.js';
 import  firebase from 'firebase/app';
 import db from './firebaseConfig';
 import 'firebase/auth';
+import './Main.css';
 
 
 const Main = () => {
@@ -33,7 +34,7 @@ const Main = () => {
 
 	const populateRegionsDropbox = () => {
         const dropdownOptions = regionNames.map((regionName) => <option value={regionName}>{regionName}</option>);
-        dropdownOptions.unshift(<option value="" disable selected>Select a Region</option>)
+        dropdownOptions.unshift(<option value="" disable selected>Scotland</option>)
 		return dropdownOptions;
 	};
 
@@ -46,24 +47,26 @@ const Main = () => {
 					<td>{munro.height} m</td>
 					<td>{munro.meaning}</td>
 					{climbedMunros.includes(munro.name) ? 
-						<td>Conquered 
-							<button onClick={() => handleUndo(munro)}>Undo</button>
+						<td><button  id="conquered-button" onClick={() => handleUndo(munro)}>Conquered!</button>
+							{/* <button onClick={() => handleUndo(munro)}>Undo</button> */}
 						</td> :
-						<button onClick={() => handleClimbed(munro)}>Climbed</button>}
+						<td><button id="climbed-button" onClick={() => handleClimbed(munro)}>Climbed?</button></td>}
 				</tr>
 			)
 		})
 		
 		
 		return (
+			munroNamesByRegion.length !== 0 ?
 			<table>
 				<tr>
 					<th>Name:</th>
 					<th>Height:</th>
 					<th>Meaning:</th>
+					<th></th>
 				</tr>
 				{munroNamesByRegion}
-			</table>
+			</table> : null
 		)
 	};
 	const handleClimbed = (munro) => {
@@ -97,6 +100,7 @@ const Main = () => {
 
     return (
         <>
+			<label>Select A Region: </label>
 			<select onChange={(event) => setSelectedRegion(event.target.value)}>{populateRegionsDropbox()}</select>
 
          	{ munroData.length != 0 ? <MapComponent climbedMunros={climbedMunros} munroData={munroData} selectedRegion={selectedRegion}/> : <p></p>}

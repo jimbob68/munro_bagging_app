@@ -21,7 +21,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1>Hello World!</h1>
+			<h1>Welcome to Munro Bagger!</h1>
 			{firebase.auth().currentUser ? <Main /> : <RegisterPage setIsLoggedIn={setIsLoggedIn} />}
 			{/* <RegisterPage />
 			<Main /> */}
