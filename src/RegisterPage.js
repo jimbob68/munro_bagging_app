@@ -12,11 +12,18 @@ const RegisterPage = ({setIsLoggedIn}) => {
     const [ loginEmail, setLoginEmail ] = useState("");
     const [ loginPassword, setLoginPassword ] = useState("");
 
-    const handleRegister = () => {
+    const handleRegister = async () => {
         firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
+        .then(async data => {
+            console.log(data.user.uid)
+            const dataToAdd = {munros_bagged : []}
+            const addUser = await db.collection("users").doc(data.user.uid).set(dataToAdd)
+        })
         .catch(error => console.log(error))
+        // const data = {munros_bagged : []}
+        // const user = await db.collection("users").doc(firebase.auth().currentUser.uid).set(data)
     }
 
     const handleLogin = () => {
