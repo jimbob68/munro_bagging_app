@@ -4,7 +4,7 @@ import ApiKey from '../ApiKey.js';
 import './MapComponent.css'
 import  '../../node_modules/@tomtom-international/web-sdk-maps/dist/maps.css';
 
-const MapComponent = ({ munroData, selectedRegion }) => {
+const MapComponent = ({ munroData, selectedRegion, climbedMunros }) => {
 
     // const [ zoomLevel, setZoomLevel ] = useState(5)
     const [clicked, setClicked] = useState(null)
@@ -25,7 +25,7 @@ const MapComponent = ({ munroData, selectedRegion }) => {
         // map.on("zoomend", () => zoomFunction(map))
         displayMarkersOnMap(map)
 
-    }, [selectedRegion]) 
+    }, [selectedRegion, climbedMunros]) 
 
     const displayMarkersOnMap = (map) => {
         let markersForMap = munroData
@@ -45,10 +45,22 @@ const MapComponent = ({ munroData, selectedRegion }) => {
             const popup = new tt.Popup({offset: 30})
                 .setHTML(`<h2>${munro.name} </h2>  <p> Height: ${munro.height}m </p>`)
 
-            const marker = new tt.Marker({scale: 0.5})
-                .setLngLat([munro.latlng_lng, munro.latlng_lat])
-                .setPopup(popup)
-                .addTo(map)
+            if(climbedMunros.includes(munro.name)) {
+                const marker = new tt.Marker({scale: 0.5, color: "green"})
+                    .setLngLat([munro.latlng_lng, munro.latlng_lat])
+                    .setPopup(popup)
+                    .addTo(map) 
+            }else{
+                const marker = new tt.Marker({scale: 0.5, color: "red"})
+                    .setLngLat([munro.latlng_lng, munro.latlng_lat])
+                    .setPopup(popup)
+                    .addTo(map)
+            }
+
+            // const marker = new tt.Marker({scale: 0.5, color: "green"})
+            //     .setLngLat([munro.latlng_lng, munro.latlng_lat])
+            //     .setPopup(popup)
+            //     .addTo(map)
         })
 
     }
