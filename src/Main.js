@@ -28,6 +28,7 @@ const Main = () => {
 				});
 				setRegionNames(uniqueRegionNames);
 			});
+			retrieveClimbedMunros();
 	}, []);
 
 	const populateRegionsDropbox = () => {
@@ -72,13 +73,26 @@ const Main = () => {
 		console.log(firebase.auth().currentUser)
 		const userRef = db.collection("users").doc(firebase.auth().currentUser.uid)
 		return userRef.update({munros_bagged: updatedClimbedMunros})
-		// .catch(error => console.log(error))
+		.catch(error => console.log(error))
 	}
 	const handleUndo = (munro) => {
 		let updatedClimbedMunros = climbedMunros.concat()
 		const index = updatedClimbedMunros.indexOf(munro.name)
 		updatedClimbedMunros.splice(index, 1)
 		setClimbedMunros(updatedClimbedMunros)
+		const userRef = db.collection("users").doc(firebase.auth().currentUser.uid)
+		return userRef.update({munros_bagged: updatedClimbedMunros})
+		.catch(error => console.log(error))
+	}
+
+	const retrieveClimbedMunros = async () => {
+		const userRef = db.collection("users").doc(firebase.auth().currentUser.uid)
+		const doc = await userRef.get()
+		if(!doc.exists){
+			console.log("No such document!")
+		}else{
+			setClimbedMunros(doc.data().munros_bagged)
+		}
 	}
 
     return (

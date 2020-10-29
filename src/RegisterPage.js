@@ -6,7 +6,7 @@ import db from './firebaseConfig';
 
 import 'firebase/auth';
 
-const RegisterPage = () => {
+const RegisterPage = ({setIsLoggedIn}) => {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ loginEmail, setLoginEmail ] = useState("");
@@ -22,8 +22,11 @@ const RegisterPage = () => {
     const handleLogin = () => {
         firebase
         .auth()
-        .signInWithEmailAndPassword(email, password)
+        .signInWithEmailAndPassword(loginEmail, loginPassword)
         .catch(error => console.log(error))
+        if(firebase.auth().currentUser){
+            setIsLoggedIn(true)
+        }
     }
 
 	return (
