@@ -3,6 +3,7 @@ import MapComponent from './components/MapComponent.js';
 import  firebase from 'firebase/app';
 import db from './firebaseConfig';
 import 'firebase/auth';
+import './Main.css';
 
 
 const Main = () => {
@@ -46,10 +47,10 @@ const Main = () => {
 					<td>{munro.height} m</td>
 					<td>{munro.meaning}</td>
 					{climbedMunros.includes(munro.name) ? 
-						<td>Conquered 
-							<button onClick={() => handleUndo(munro)}>Undo</button>
+						<td><button  id="conquered-button" onClick={() => handleUndo(munro)}>Conquered!</button>
+							{/* <button onClick={() => handleUndo(munro)}>Undo</button> */}
 						</td> :
-						<button onClick={() => handleClimbed(munro)}>Climbed</button>}
+						<td><button id="climbed-button" onClick={() => handleClimbed(munro)}>Climbed?</button></td>}
 				</tr>
 			)
 		})
@@ -62,6 +63,7 @@ const Main = () => {
 					<th>Name:</th>
 					<th>Height:</th>
 					<th>Meaning:</th>
+					<th></th>
 				</tr>
 				{munroNamesByRegion}
 			</table> : null
