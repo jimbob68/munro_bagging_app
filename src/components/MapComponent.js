@@ -45,7 +45,7 @@ const MapComponent = ({ munroData, selectedRegion, climbedMunros }) => {
             const popup = new tt.Popup({offset: 30})
                 .setHTML(`<h2>${munro.name} </h2>  <p> Height: ${munro.height}m </p>`)
 
-            if(climbedMunros.includes(munro.name)) {
+            if(climbedMunros.includes(munro.smcid)) {
                 const marker = new tt.Marker({scale: 0.5, color: "green"})
                     .setLngLat([munro.latlng_lng, munro.latlng_lat])
                     .setPopup(popup)

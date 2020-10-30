@@ -46,7 +46,7 @@ const Main = () => {
 					<td>{munro.name}</td>
 					<td>{munro.height} m</td>
 					<td>{munro.meaning}</td>
-					{climbedMunros.includes(munro.name) ? 
+					{climbedMunros.includes(munro.smcid) ? 
 						<td><button  id="conquered-button" onClick={() => handleUndo(munro)}>Conquered!</button>
 							{/* <button onClick={() => handleUndo(munro)}>Undo</button> */}
 						</td> :
@@ -71,7 +71,7 @@ const Main = () => {
 	};
 	const handleClimbed = (munro) => {
 		let updatedClimbedMunros = climbedMunros.concat()
-		updatedClimbedMunros.push(munro.name)
+		updatedClimbedMunros.push(munro.smcid)
 		setClimbedMunros(updatedClimbedMunros)
 		console.log(firebase.auth().currentUser)
 		const userRef = db.collection("users").doc(firebase.auth().currentUser.uid)
@@ -80,7 +80,7 @@ const Main = () => {
 	}
 	const handleUndo = (munro) => {
 		let updatedClimbedMunros = climbedMunros.concat()
-		const index = updatedClimbedMunros.indexOf(munro.name)
+		const index = updatedClimbedMunros.indexOf(munro.smcid)
 		updatedClimbedMunros.splice(index, 1)
 		setClimbedMunros(updatedClimbedMunros)
 		const userRef = db.collection("users").doc(firebase.auth().currentUser.uid)
