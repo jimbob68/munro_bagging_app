@@ -4,9 +4,10 @@ import  firebase from 'firebase/app';
 import db from './firebaseConfig';
 import 'firebase/auth';
 import './Main.css';
+import UserDashboard from './components/UserDashboard.js';
 
 
-const Main = () => {
+const Main = ({setIsLoggedIn}) => {
 	const [ munroData, setMunroData ] = useState([]);
 	const [ regionNames, setRegionNames ] = useState([]);
 	const [ selectedRegion, setSelectedRegion ] = useState('');
@@ -100,6 +101,7 @@ const Main = () => {
 
     return (
         <>
+			<UserDashboard setIsLoggedIn={setIsLoggedIn} climbedMunros={climbedMunros} munroData={munroData}/>
 			<label>Select A Region: </label>
 			<select onChange={(event) => setSelectedRegion(event.target.value)}>{populateRegionsDropbox()}</select>
 

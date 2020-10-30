@@ -27,10 +27,11 @@ const RegisterPage = ({setIsLoggedIn}) => {
         firebase
         .auth()
         .signInWithEmailAndPassword(loginEmail, loginPassword)
+        .then(() => setIsLoggedIn(true))
         .catch(error => console.log(error))
-        if(firebase.auth().currentUser){
-            setIsLoggedIn(true)
-        }
+        // if(firebase.auth().currentUser){
+        //     setIsLoggedIn(true)
+        // }
     }
 
 	return (
