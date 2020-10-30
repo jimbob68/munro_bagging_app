@@ -9,20 +9,24 @@ import 'firebase/auth';
 function App() {
 	const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
-	useEffect(() => {
-		checkIfLoggedIn();
-	}, []);
+	// useEffect(() => {
+	// 	checkIfLoggedIn();
+	// }, []);
 
-	const checkIfLoggedIn = () => {
-		if (firebase.auth().currentUser) {
-			setIsLoggedIn(true);
-		}
-	};
+	// const checkIfLoggedIn = () => {
+	// 	if (firebase.auth().currentUser) {
+	// 		setIsLoggedIn(true);
+	// 	}
+	// };
 
 	return (
 		<div className="App">
 			<h1>Welcome to Munro Bagger!</h1>
-			{firebase.auth().currentUser ? <Main /> : <RegisterPage setIsLoggedIn={setIsLoggedIn} />}
+			{firebase.auth().currentUser ? (
+				<Main setIsLoggedIn={setIsLoggedIn} />
+			) : (
+				<RegisterPage setIsLoggedIn={setIsLoggedIn} />
+			)}
 			{/* <RegisterPage />
 			<Main /> */}
 		</div>
