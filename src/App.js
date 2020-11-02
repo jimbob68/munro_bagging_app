@@ -5,6 +5,7 @@ import RegisterPage from './RegisterPage.js';
 import firebase from 'firebase/app';
 import db from './firebaseConfig';
 import 'firebase/auth';
+import logo from "./assets/munrobagger.png"
 
 function App() {
 	const [ isLoggedIn, setIsLoggedIn ] = useState(false);
@@ -21,7 +22,10 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1>Welcome to Munro Bagger!</h1>
+			<div className="App-header">
+			<img src={logo} alt="logo" />
+			<h1>Welcome to Munro-Bagger!</h1>
+			</div>
 			{firebase.auth().currentUser ? (
 				<Main setIsLoggedIn={setIsLoggedIn} />
 			) : (

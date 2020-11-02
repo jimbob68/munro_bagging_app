@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import * as firebase from 'firebase';
 import  firebase from 'firebase/app';
 import db from './firebaseConfig';
+import './RegisterPage.css'
 
 
 import 'firebase/auth';
@@ -35,23 +36,33 @@ const RegisterPage = ({setIsLoggedIn}) => {
     }
 
 	return (
-		<>
-			<label>
-				Email Address<input type="text" value={email} onChange={(event) => setEmail(event.target.value)} name="Email" />
-			</label>
-			<label>
-				Password<input type="text" value={password} onChange={(event) => setPassword(event.target.value)} name="Password" />
-			</label>
-			<input type="submit" onClick={handleRegister}  value="Register" />
+		
+        <div className="register-page-container">
 
-            <label>
-				Email Address<input type="text" value={loginEmail} onChange={(event) => setLoginEmail(event.target.value)} name="Email" />
-			</label>
-			<label>
-				Password<input type="text" value={loginPassword} onChange={(event) => setLoginPassword(event.target.value)} name="Password" />
-			</label>
-			<input type="submit" onClick={handleLogin}  value="Login" />
-		</>
+            <div className="login-wrapper">
+
+                <h3>If you are NEW to Munro-Bagger please REGISTER with your e-mail address and password.</h3>
+                <label>
+                    Email Address: <input type="text" value={email} onChange={(event) => setEmail(event.target.value)} name="Email" />
+                </label>
+                <label>
+                    Password: <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} name="Password" />
+                </label>
+                <input type="submit" onClick={handleRegister}  value="Register" />
+                <br />
+
+                <h3>If you have already registered with Munro-Bagger you can LOGIN below.</h3>
+
+                <label>
+                    Email Address: <input type="text" value={loginEmail} onChange={(event) => setLoginEmail(event.target.value)} name="Email" />
+                </label>
+                <label>
+                    Password: <input type="password" value={loginPassword} onChange={(event) => setLoginPassword(event.target.value)} name="Password" />
+                </label>
+                <input type="submit" onClick={handleLogin}  value="Login" />
+            </div>
+        </div>
+		
 	);
 };
 
