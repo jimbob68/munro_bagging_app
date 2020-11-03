@@ -25,7 +25,7 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 				setEmail('');
 				setPassword('');
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => alert(error));
 	};
 
 	const handleLogin = () => {
@@ -37,7 +37,7 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 				setLoginEmail('');
 				setLoginPassword('');
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => alert(error));
 		// if(firebase.auth().currentUser){
 		//     setIsLoggedIn(true)
 		// }
