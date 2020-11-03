@@ -7,14 +7,16 @@ import './UserDashboard.css';
 const UserDashboard = ({setIsLoggedIn, climbedMunros, munroData}) => {
 
     const [ highestMunroData, setHighestMunroData ] = useState({});
+    const [ heightClimbed, setHeightClimbed ] = useState(0);
 
     useEffect(() => {
         completedMunros()
         if(munroData.length && climbedMunros.length){
             getHighestMunro()
+            totalHeightClimbed()
         } else if(climbedMunros.length === 0){
             setHighestMunroData({})
-        }
+        } 
     }, [climbedMunros, munroData])
 
     const handleLogout = () => {
@@ -57,11 +59,24 @@ const UserDashboard = ({setIsLoggedIn, climbedMunros, munroData}) => {
             setHighestMunroData(highestMunroConquered)
        
     }
+
+    const totalHeightClimbed = () => {
+        const munrosClimbedData = climbedMunros.map(munro => {
+            const individualMunroData =  munroData.filter(munroDataObject => munroDataObject.smcid === munro)
+            console.log(individualMunroData)
+            return individualMunroData[0].height
+        })
+        console.log(munrosClimbedData)
+        const reducer = (accumulator, currentValue) => accumulator + currentValue
+        setHeightClimbed(munrosClimbedData.reduce(reducer))
+    }
     return (
         <>
         <p>User Dashboard</p>
     <p>Munros Conquered: {climbedMunros.length} / 282</p>
+    <p>Total Height Climbed: {heightClimbed}m</p>
     { highestMunroData.name && <p>Highest Munro Conquered: {highestMunroData.name} {highestMunroData.height}m</p>}
+
         <button onClick={() => handleLogout()}>Logout</button>
     
     </>
