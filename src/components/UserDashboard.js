@@ -10,8 +10,10 @@ const UserDashboard = ({setIsLoggedIn, climbedMunros, munroData}) => {
 
     useEffect(() => {
         completedMunros()
-        if(munroData.length){
+        if(munroData.length && climbedMunros.length){
             getHighestMunro()
+        } else if(climbedMunros.length === 0){
+            setHighestMunroData({})
         }
     }, [climbedMunros, munroData])
 
@@ -51,7 +53,9 @@ const UserDashboard = ({setIsLoggedIn, climbedMunros, munroData}) => {
 
         
     })
-        setHighestMunroData(highestMunroConquered)
+        
+            setHighestMunroData(highestMunroConquered)
+       
     }
     return (
         <>
