@@ -72,12 +72,17 @@ const UserDashboard = ({setIsLoggedIn, climbedMunros, munroData}) => {
     }
     return (
         <>
-        <p>User Dashboard</p>
-    <p>Munros Conquered: {climbedMunros.length} / 282</p>
-    <p>Total Height Climbed: {heightClimbed}m</p>
-    { highestMunroData.name && <p>Highest Munro Conquered: {highestMunroData.name} {highestMunroData.height}m</p>}
-
-        <button onClick={() => handleLogout()}>Logout</button>
+        <div className="dashboard-container">
+        <h3 id="dashboard-title">User Dashboard</h3>
+        <div className="dashboard-detail-container">
+        <p id="dashboard-detail-text"><b>Munros Conquered:</b> {climbedMunros.length} / 282</p>
+        <p id="dashboard-detail-text"><b>Total Height Climbed:</b> {heightClimbed}m</p>
+        { highestMunroData.name && <p id="dashboard-detail-text"><b>Highest Munro Conquered:</b> {highestMunroData.name} {highestMunroData.height}m</p>}
+        </div>
+        
+        <button id="logout-button" onClick={() => handleLogout()}>Logout</button>
+        </div>
+        
     
     </>
     )};

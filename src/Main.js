@@ -34,8 +34,8 @@ const Main = ({setIsLoggedIn}) => {
 	}, []);
 
 	const populateRegionsDropbox = () => {
-        const dropdownOptions = regionNames.map((regionName) => <option value={regionName}>{regionName}</option>);
-        dropdownOptions.unshift(<option value="" disable selected>Scotland</option>)
+        const dropdownOptions = regionNames.map((regionName) => <option id="dropbox" value={regionName}>{regionName}</option>);
+        dropdownOptions.unshift(<option id="dropbox" value="" disable selected>Scotland</option>)
 		return dropdownOptions;
 	};
 

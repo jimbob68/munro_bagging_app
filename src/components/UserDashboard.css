@@ -1,0 +1,35 @@
+#dashboard-title {
+    font-size: 20px;
+    /* text-decoration: underline; */
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.dashboard-container {
+    background-color: burlywood;
+    border: solid 1px black;
+    border-radius: 20px;
+    margin: 15px;
+    padding: 10px;
+}
+
+.dashboard-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    margin: 0px;
+}
+#dashboard-detail-text {
+    font-size: 16px;
+}
+#logout-button {
+    background-color: crimson;
+    font-family: 'Nunito', sans-serif;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 4px 15px;
+    margin: 0px 15px;
+    width: 100px;
+    border-radius: 20px;
+    border: solid 1px darkblue;
+}
