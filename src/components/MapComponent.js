@@ -24,25 +24,29 @@ const MapComponent = ({ munroData, selectedRegion, climbedMunros }) => {
         // console.log("zoom", map.getZoom())
         // map.on("zoomend", () => zoomFunction(map))
         displayMarkersOnMap(map)
-
+        console.log("window", window.innerWidth)
     }, [selectedRegion, climbedMunros]) 
 
     const displayMarkersOnMap = (map) => {
         let markersForMap = munroData
+        let zoomLevel = 8
+        if(window.innerWidth <= 450){
+            zoomLevel = 7.5
+        }
         if(selectedRegion){
             const filteredMarkers = munroData.filter(munro => munro.region === selectedRegion)
             markersForMap = filteredMarkers
             if(selectedRegion === "The Islands"){
                 map.flyTo({center: [-6.15, 56.89], zoom: 7.5})
             } else {
-                map.flyTo({center: [markersForMap[0].latlng_lng, markersForMap[0].latlng_lat], zoom: 8})
+                map.flyTo({center: [markersForMap[0].latlng_lng, markersForMap[0].latlng_lat], zoom: zoomLevel})
             }
         }
         markersForMap.forEach(munro => {
             // const handleClimbed = () => {
             //     console.log("Climbed")
             // }
-            const popup = new tt.Popup({offset: 30})
+            const popup = new tt.Popup({offset: 20})
                 .setHTML(`<h2 class="popup-header">${munro.name} </h2> <p class="popup-meaning"><b>Meaning:</b> ${munro.meaning}</p> <p class="popup-height"> <b>Height:</b> ${munro.height}m </p>`)
 
             if(climbedMunros.includes(munro.smcid)) {
