@@ -33,3 +33,9 @@ th {
 #dropbox {
 	font-size: 40px;
 }
+
+@media screen and (max-width: 450px) {
+	.meaning {
+		display: none;
+	}
+}

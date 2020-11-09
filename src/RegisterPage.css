@@ -1,56 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 .register-page-container {
-    background-color: #f5f5f5;
-    min-height: 100vh;
-    padding: 0px 20px;
+	background-color: #f5f5f5;
+	min-height: 100vh;
+	padding: 0px 20px;
 }
 .login-wrapper {
-    background-color: burlywood;
-    border: solid 1px black;
-    margin: 50px 150px;
-    padding: 0px 30px 50px 30px;
-    border-radius: 20px;
+	background-color: burlywood;
+	border: solid 1px black;
+	margin: 50px 150px;
+	padding: 0px 30px 50px 30px;
+	border-radius: 20px;
 }
 
 label {
-    font-family: 'Nunito', sans-serif;
-    font-weight: bold;
-    margin: 10px;
-    font-size: 18px;
+	font-family: 'Nunito', sans-serif;
+	font-weight: bold;
+	margin: 10px;
+	font-size: 18px;
 }
 input[type=text] {
-    font-family: 'Nunito', sans-serif;
-    width: 250px;
-    padding: 8px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border-radius: 20px;
-    font-size: 18px;
+	font-family: 'Nunito', sans-serif;
+	width: 250px;
+	padding: 8px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border-radius: 20px;
+	font-size: 18px;
 }
 input[type=password] {
-    font-family: 'Nunito', sans-serif;
-    width: 250px;
-    padding: 8px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border-radius: 20px;
-    font-size: 16px;
+	font-family: 'Nunito', sans-serif;
+	width: 250px;
+	padding: 8px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border-radius: 20px;
+	font-size: 16px;
 }
 input[type=submit] {
-    background-color: crimson;
-    font-family: 'Nunito', sans-serif;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 8px 20px;
-    margin: 0px 15px;
-    width: 200px;
-    border-radius: 20px;
-    border: solid 1px darkblue;
+	background-color: crimson;
+	font-family: 'Nunito', sans-serif;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 8px 20px;
+	margin: 0px 15px;
+	width: 200px;
+	border-radius: 20px;
+	border: solid 1px darkblue;
 }
 h3 {
-    margin: 0;
-    padding: 25px;
-    font-family: 'Nunito', sans-serif;
+	margin: 0;
+	padding: 25px;
+	font-family: 'Nunito', sans-serif;
+}
+@media screen and (max-width: 450px) {
+	.login-wrapper {
+		margin: 30px 10px;
+		padding: 0px 5px 10px 5px;
+	}
+	label {
+		margin: 5px;
+		font-size: 18px;
+	}
+	h3 {
+		padding: 15px;
+	}
 }

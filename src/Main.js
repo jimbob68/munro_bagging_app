@@ -46,7 +46,7 @@ const Main = ({setIsLoggedIn}) => {
 				<tr>
 					<td>{munro.name}</td>
 					<td>{munro.height} m</td>
-					<td>{munro.meaning}</td>
+					<td className="meaning">{munro.meaning}</td>
 					{climbedMunros.includes(munro.smcid) ? 
 						<td><button  id="conquered-button" onClick={() => handleUndo(munro)}>Conquered!</button>
 							{/* <button onClick={() => handleUndo(munro)}>Undo</button> */}
@@ -63,7 +63,7 @@ const Main = ({setIsLoggedIn}) => {
 				<tr>
 					<th>Name:</th>
 					<th>Height:</th>
-					<th>Meaning:</th>
+					<th className="meaning">Meaning:</th>
 					<th></th>
 				</tr>
 				{munroNamesByRegion}
