@@ -31,7 +31,7 @@ const MapComponent = ({ munroData, selectedRegion, climbedMunros }) => {
         let markersForMap = munroData
         let zoomLevel = 8
         if(window.innerWidth <= 450){
-            zoomLevel = 7.5
+            zoomLevel = 7
         }
         if(selectedRegion){
             const filteredMarkers = munroData.filter(munro => munro.region === selectedRegion)
