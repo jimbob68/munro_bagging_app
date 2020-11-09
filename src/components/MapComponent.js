@@ -43,7 +43,7 @@ const MapComponent = ({ munroData, selectedRegion, climbedMunros }) => {
             //     console.log("Climbed")
             // }
             const popup = new tt.Popup({offset: 30})
-                .setHTML(`<h2 class="popup-header">${munro.name} </h2> <p class="popup-meaning">Meaning: ${munro.meaning}</p> <p class="popup-height"> Height: ${munro.height}m </p>`)
+                .setHTML(`<h2 class="popup-header">${munro.name} </h2> <p class="popup-meaning"><b>Meaning:</b> ${munro.meaning}</p> <p class="popup-height"> <b>Height:</b> ${munro.height}m </p>`)
 
             if(climbedMunros.includes(munro.smcid)) {
                 const marker = new tt.Marker({scale: 0.5, color: "green"})
