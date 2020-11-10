@@ -5,7 +5,10 @@
 
 @media screen and (max-width: 450px) {
 	#map {
-		margin: 20px 25px;
+		width: 80%;
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 	.popup-header {
 		margin: 5px;

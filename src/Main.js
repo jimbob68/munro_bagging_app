@@ -34,8 +34,8 @@ const Main = ({setIsLoggedIn}) => {
 	}, []);
 
 	const populateRegionsDropbox = () => {
-        const dropdownOptions = regionNames.map((regionName) => <option id="dropbox" value={regionName}>{regionName}</option>);
-        dropdownOptions.unshift(<option id="dropbox" value="" disable selected>Scotland</option>)
+        const dropdownOptions = regionNames.map((regionName, index) => <option id="dropbox" key={index} value={regionName}>{regionName}</option>);
+        dropdownOptions.unshift(<option id="dropbox" value="" >Scotland</option>)
 		return dropdownOptions;
 	};
 
@@ -60,13 +60,17 @@ const Main = ({setIsLoggedIn}) => {
 		return (
 			munroNamesByRegion.length !== 0 ?
 			<table>
-				<tr>
+				<thead>
+					<tr>
 					<th>Name:</th>
 					<th>Height:</th>
 					<th className="meaning">Meaning:</th>
 					<th></th>
-				</tr>
+					</tr>
+				</thead>
+				<tbody>
 				{munroNamesByRegion}
+				</tbody>
 			</table> : null
 		)
 	};
