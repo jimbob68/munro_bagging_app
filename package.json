@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@tomtom-international/web-sdk-maps": "^5.64.0",
     "firebase": "^8.0.0",
+    "password-validator": "^5.1.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-scripts": "3.4.3"

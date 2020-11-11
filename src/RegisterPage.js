@@ -12,20 +12,72 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 	const [ loginEmail, setLoginEmail ] = useState('');
 	const [ loginPassword, setLoginPassword ] = useState('');
 
+	const validatePassword = (passwordToValidate) => {
+		const passwordValidator = require('password-validator');
+
+		// Create a schema
+		const schema = new passwordValidator();
+
+		// Add properties to it
+		schema
+			.is()
+			.min(6) // Minimum length 8
+			.is()
+			.max(20) // Maximum length 100
+			.has()
+			.uppercase() // Must have uppercase letters
+			.has()
+			.lowercase() // Must have lowercase letters
+			.has()
+			.digits(1) // Must have at least 2 digits
+			.has()
+			.not()
+			.spaces(); // Should not have spaces
+		// .is()
+		// .not()
+		// .oneOf([ 'Passw0rd', 'Password123' ]); // Blacklist these values
+
+		// Validate against a password string
+		// console.log(schema.validate('validPASS123'));
+		// // => true
+		// console.log(schema.validate('invalidPASS'));
+		// // => false
+
+		// // Get a full list of rules which failed
+		// console.log(schema.validate('joke', { list: true }));
+		// => [ 'min', 'uppercase', 'digits' ]
+		console.log(schema.validate(passwordToValidate, { list: true }));
+		const validationResult = schema.validate(passwordToValidate, { list: true });
+		let alertText = [];
+		if (validationResult.includes('digits')) alertText.push('at least one number');
+		if (validationResult.includes('min')) alertText.push('at least six characters');
+		if (validationResult.includes('uppercase')) alertText.push('at least one capital letter');
+		if (validationResult.includes('max')) alertText.push('less than twenty characters');
+		if (validationResult.includes('spaces')) alertText.push('no spaces');
+		if (validationResult.includes('lowercase')) alertText.push('at least one lowercase letter');
+
+		let alertMessage = 'Your password must contain ' + alertText.join(', ');
+		if (alertText.length > 0) alert(alertMessage);
+
+		return schema.validate(passwordToValidate);
+	};
+
 	const handleRegister = async () => {
-		firebase
-			.auth()
-			.createUserWithEmailAndPassword(email, password)
-			.then(async (data) => {
-				const dataToAdd = { munros_bagged: [] };
-				const addUser = await db.collection('users').doc(data.user.uid).set(dataToAdd);
-			})
-			.then(() => {
-				setIsLoggedIn(true);
-				setEmail('');
-				setPassword('');
-			})
-			.catch((error) => alert(error));
+		if (validatePassword(password)) {
+			firebase
+				.auth()
+				.createUserWithEmailAndPassword(email, password)
+				.then(async (data) => {
+					const dataToAdd = { munros_bagged: [] };
+					const addUser = await db.collection('users').doc(data.user.uid).set(dataToAdd);
+				})
+				.then(() => {
+					setIsLoggedIn(true);
+					setEmail('');
+					setPassword('');
+				})
+				.catch((error) => alert(error));
+		}
 	};
 
 	const handleLogin = () => {
