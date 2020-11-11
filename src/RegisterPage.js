@@ -11,6 +11,7 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 	const [ password, setPassword ] = useState('');
 	const [ loginEmail, setLoginEmail ] = useState('');
 	const [ loginPassword, setLoginPassword ] = useState('');
+	const [ forgotPasswordHelpIsVisible, setForgotPasswordHelpIsVisible ] = useState(false);
 
 	const validatePassword = (passwordToValidate) => {
 		const passwordValidator = require('password-validator');
@@ -88,6 +89,7 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 				setIsLoggedIn(true);
 				setLoginEmail('');
 				setLoginPassword('');
+				setForgotPasswordHelpIsVisible(false);
 			})
 			.catch((error) => alert(error));
 		// if(firebase.auth().currentUser){
@@ -96,6 +98,9 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 	};
 
 	const handleForgottenPassword = () => {
+		if (loginEmail === '') {
+			setForgotPasswordHelpIsVisible(true);
+		}
 		firebase
 			.auth()
 			.sendPasswordResetEmail(loginEmail)
@@ -126,6 +131,12 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 				<br />
 
 				<h3>If you have already registered with Munro-Bagger you can LOGIN below.</h3>
+
+				{forgotPasswordHelpIsVisible && (
+					<p className="forgot-password-text">
+						Please enter the email address you registered with below. Then click forgot password.
+					</p>
+				)}
 
 				<label>
 					Email Address:{' '}
