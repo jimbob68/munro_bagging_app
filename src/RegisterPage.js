@@ -95,6 +95,16 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 		// }
 	};
 
+	const handleForgottenPassword = () => {
+		firebase
+			.auth()
+			.sendPasswordResetEmail(loginEmail)
+			.then(() => {
+				alert('A reset password email has been sent to your login email address.');
+			})
+			.catch((error) => console.log(error));
+	};
+
 	return (
 		<div className="register-page-container">
 			<div className="login-wrapper">
@@ -126,8 +136,11 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 						name="Email"
 					/>
 				</label>
+				<p className="password-reset" onClick={() => handleForgottenPassword()}>
+					Forgot Password?
+				</p>
 				<label>
-					Password:{' '}
+					Password:
 					<input
 						type="password"
 						value={loginPassword}
