@@ -130,36 +130,40 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 				<input type="submit" onClick={handleRegister} value="Register" />
 				<br />
 
-				<h3>If you have already registered with Munro-Bagger you can LOGIN below.</h3>
+				<h3 className="login-text">If you have already registered with Munro-Bagger you can LOGIN below.</h3>
 
 				{forgotPasswordHelpIsVisible && (
-					<p className="forgot-password-text">
-						Please enter the email address you registered with below. Then click forgot password.
-					</p>
+					<span className="forgot-password-text">
+						Please enter the email address you registered with below. Then click Forgot Password.
+					</span>
 				)}
+				<div className="login-wrapper2">
+					<label>
+						Email Address:{' '}
+						<input
+							type="text"
+							value={loginEmail}
+							onChange={(event) => setLoginEmail(event.target.value)}
+							name="Email"
+						/>
+					</label>
 
-				<label>
-					Email Address:{' '}
-					<input
-						type="text"
-						value={loginEmail}
-						onChange={(event) => setLoginEmail(event.target.value)}
-						name="Email"
-					/>
-				</label>
-				<p className="password-reset" onClick={() => handleForgottenPassword()}>
-					Forgot Password?
-				</p>
-				<label>
-					Password:
-					<input
-						type="password"
-						value={loginPassword}
-						onChange={(event) => setLoginPassword(event.target.value)}
-						name="Password"
-					/>
-				</label>
-				<input type="submit" onClick={handleLogin} value="Login" />
+					<label>
+						{/* <p className="password-reset"> n</p> */}
+						<br className="login-break" />
+						Password:{' '}
+						<input
+							type="password"
+							value={loginPassword}
+							onChange={(event) => setLoginPassword(event.target.value)}
+							name="Password"
+						/>
+						<p className="password-reset" onClick={() => handleForgottenPassword()}>
+							Forgot Password
+						</p>
+					</label>
+					<input type="submit" onClick={handleLogin} value="Login" />
+				</div>
 			</div>
 		</div>
 	);
