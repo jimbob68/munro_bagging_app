@@ -47,7 +47,6 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 		// // Get a full list of rules which failed
 		// console.log(schema.validate('joke', { list: true }));
 		// => [ 'min', 'uppercase', 'digits' ]
-		console.log(schema.validate(passwordToValidate, { list: true }));
 		const validationResult = schema.validate(passwordToValidate, { list: true });
 		let alertText = [];
 		if (validationResult.includes('digits')) alertText.push('at least one number');
@@ -92,9 +91,6 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 				setForgotPasswordHelpIsVisible(false);
 			})
 			.catch((error) => alert(error));
-		// if(firebase.auth().currentUser){
-		//     setIsLoggedIn(true)
-		// }
 	};
 
 	const handleForgottenPassword = () => {
@@ -149,7 +145,6 @@ const RegisterPage = ({ setIsLoggedIn }) => {
 					</label>
 
 					<label>
-						{/* <p className="password-reset"> n</p> */}
 						<br className="login-break" />
 						Password:{' '}
 						<input

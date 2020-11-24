@@ -34,15 +34,11 @@ const UserDashboard = ({setIsLoggedIn, climbedMunros, munroData}) => {
         }
     }
     const getHighestMunro = () => {
-        console.log("climbedMunros", climbedMunros)
-        console.log("munroData", munroData)
         const munroIdsWithoutLetter = climbedMunros.map(munro => {
          const munroIdWithoutLetter = munro.substring(1)
          return parseInt(munroIdWithoutLetter)
         })
-        console.log(munroIdsWithoutLetter)
         const lowestConqueredMunroId = Math.min(...munroIdsWithoutLetter)
-        console.log(lowestConqueredMunroId)
         const highestMunroConquered = munroData.find(munro => {
             if(lowestConqueredMunroId < 100 && lowestConqueredMunroId >= 10){
                return munro.smcid === "M0" + lowestConqueredMunroId 
@@ -63,10 +59,8 @@ const UserDashboard = ({setIsLoggedIn, climbedMunros, munroData}) => {
     const totalHeightClimbed = () => {
         const munrosClimbedData = climbedMunros.map(munro => {
             const individualMunroData =  munroData.filter(munroDataObject => munroDataObject.smcid === munro)
-            console.log(individualMunroData)
             return individualMunroData[0].height
         })
-        console.log(munrosClimbedData)
         const reducer = (accumulator, currentValue) => accumulator + currentValue
         setHeightClimbed(munrosClimbedData.reduce(reducer))
     }
