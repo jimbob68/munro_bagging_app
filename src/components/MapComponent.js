@@ -10,6 +10,7 @@ const MapComponent = ({ munroData, selectedRegion, climbedMunros }) => {
     const [clicked, setClicked] = useState(null)
 
     useEffect(() => {
+        console.log("selectedRegion", selectedRegion)
         const map = tt.map({
             key: ApiKey,
             container: 'map',
@@ -46,9 +47,15 @@ const MapComponent = ({ munroData, selectedRegion, climbedMunros }) => {
             // const handleClimbed = () => {
             //     console.log("Climbed")
             // }
-            const popup = new tt.Popup({offset: 20})
-                .setHTML(`<h2 class="popup-header">${munro.name} </h2> <p class="popup-meaning"><b>Meaning:</b> ${munro.meaning}</p> <p class="popup-height"> <b>Height:</b> ${munro.height}m </p>`)
-
+            let popup 
+            if(selectedRegion === ""){
+                popup = new tt.Popup({offset: 20})
+                .setHTML(`<h2 class="popup-header">${munro.name} </h2> 
+                 <p class="popup-height"> <b>Height:</b> ${munro.height}m </p> <p class="popup-region"><b>Region:</b> ${munro.region}</p>`) 
+            } else {
+                popup = new tt.Popup({offset: 20})
+                .setHTML(`<h2 class="popup-header">${munro.name} </h2> 
+                 <p class="popup-height"> <b>Height:</b> ${munro.height}m </p> <p class="popup-meaning"><b>Meaning:</b> ${munro.meaning}</p> `)}
             if(climbedMunros.includes(munro.smcid)) {
                 const marker = new tt.Marker({scale: 0.5, color: "green"})
                     .setLngLat([munro.latlng_lng, munro.latlng_lat])
