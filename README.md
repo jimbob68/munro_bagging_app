@@ -19,7 +19,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 <img width="500" alt="homescreen screenshot" src="https://user-images.githubusercontent.com/56137428/117432203-02767a80-af22-11eb-8a94-615a9b6fcc48.png">
 
-
-
-
 <img width="500" alt="Screenshot of region dropdown menu" src="https://user-images.githubusercontent.com/56137428/117434049-17540d80-af24-11eb-9168-8c473cf76bbb.png">
+
+<img width="500" alt="Screenshot of selected region with munro list" src="https://user-images.githubusercontent.com/56137428/117434546-b4af4180-af24-11eb-8e5a-fb99a56a6404.png">
