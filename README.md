@@ -1,3 +1,7 @@
+Created by Chris Fraser, Steve Vance and James Fraser.
+
+Try out our <a href="https://munro-bagger-cca2f.web.app/">Munro Bagging App</a>.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
